@@ -23,13 +23,14 @@ Group {
  addUserKnob {26 ""}
  addUserKnob {26 instructions l "" +STARTLINE T "Plug a texture into Input2 to use that instead of noise"}
  addUserKnob {26 ""}
- addUserKnob {26 FractalBlur_Credit l "" +STARTLINE T "Fractal Blur v1.6 by Richard Frazer - www.richardfrazer.com\nmod-v1 by Holger Hummel - www.celluloid-vfx.com"}
+ addUserKnob {26 FractalBlur_Credit l "" +STARTLINE T "Fractal Blur v1.7 by Richard Frazer - www.richardfrazer.com\nmod-v1 by Holger Hummel - www.celluloid-vfx.com"}
 }
  Input {
   inputs 0
   name TEXTURE
   xpos 1874
   ypos -423
+  number 1
  }
  Dot {
   name Dot2
@@ -42,7 +43,7 @@ set N31a35230 [stack 0]
   name ALPHA
   xpos 1516
   ypos -452
-  number 1
+  number 0
  }
  Dot {
   name Dot3
