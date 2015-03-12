@@ -76,7 +76,7 @@ set N31a3eb00 [stack 0]
 set N31a4fea0 [stack 0]
  Switch {
   inputs 2
-  which {{"parent.input0.name +1"}}
+  which {{"[exists parent.input1.name]"}}
   name Switch3
   selected true
   xpos 1714
