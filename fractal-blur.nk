@@ -2,10 +2,10 @@ set cut_paste_input [stack 0]
 version 9.0 v6
 push $cut_paste_input
 Group {
-name Fractal_Blur5
+name Fractal_Blur8
 selected true
-xpos -1949
-ypos -2597
+xpos -2287
+ypos -838
 addUserKnob {20 User}
 addUserKnob {7 FractalBlur_UserDilate l Spread R 0 200}
 addUserKnob {7 FractalBlur_UserGrainSize l "Grain Size" R 0 100}
@@ -37,7 +37,7 @@ name Dot2
 xpos 1908
 ypos -118
 }
-set N256d8b30 [stack 0]
+set N2d8db230 [stack 0]
 Input {
 inputs 0
 name ALPHA
@@ -49,7 +49,7 @@ name Dot3
 xpos 1550
 ypos -370
 }
-set N14070d60 [stack 0]
+set N2a3281b0 [stack 0]
 Dot {
 name Dot1
 xpos 1748
@@ -72,22 +72,20 @@ name Noise1
 xpos 1714
 ypos -166
 }
-set N23d2cc90 [stack 0]
+set N2a32c480 [stack 0]
 Switch {
 inputs 2
 which {{"\[exists parent.input1]"}}
 name Switch3
-selected true
 xpos 1714
 ypos -122
 }
-set N29301330 [stack 0]
 Invert {
 name Invert4
 xpos 1714
 ypos -67
 }
-push $N14070d60
+push $N2a3281b0
 Blur {
 size {{"\[value FractalBlur_UserDilate]" i x101 0}}
 name Blur1
@@ -107,7 +105,7 @@ name Dot10
 xpos 1550
 ypos -133
 }
-set N1c327b70 [stack 0]
+set N2a3056d0 [stack 0]
 Merge2 {
 inputs 2
 operation minus
@@ -118,17 +116,17 @@ ypos -6
 Invert {
 name Invert3
 xpos 1660
-ypos 51
+ypos 37
 }
-push $N1c327b70
+push $N2a3056d0
 Merge2 {
 inputs 2
 operation multiply
 name Merge13
 xpos 1516
-ypos 57
+ypos 69
 }
-set N234d1470 [stack 0]
+set N2d8c5df0 [stack 0]
 Clamp {
 name Clamp1
 xpos 1408
@@ -142,7 +140,7 @@ name Grade1
 xpos 1408
 ypos 195
 }
-push $N234d1470
+push $N2d8c5df0
 Switch {
 inputs 2
 which {{FractalBlur_UserBlackWhite i x47 1}}
@@ -152,26 +150,28 @@ ypos 249
 }
 Grade {
 channels rgba
-blackpoint {{FractalBlur_UserContrast i}}
-whitepoint {{1-FractalBlur_UserContrast i}}
-gamma {{FractalBlur_UserGamma i x101 0.985}}
+blackpoint {{FractalBlur_UserContrast}}
+whitepoint {{1-FractalBlur_UserContrast}}
+gamma {{FractalBlur_UserGamma x101 0.985}}
+black_clamp false
 name Grade5
+selected true
 xpos 1516
-ypos 330
+ypos 329
 }
-set N1e071bf0 [stack 0]
+set N308eade0 [stack 0]
 Clamp {
 name Clamp2
-xpos 1413
-ypos 372
+xpos 1426
+ypos 394
 }
-push $N1e071bf0
+push $N308eade0
 Switch {
 inputs 2
-which {{FractalBlur_UserBW i x47 0}}
+which {{FractalBlur_UserBW x47 0}}
 name Switch2
 xpos 1517
-ypos 464
+ypos 466
 }
 Shuffle {
 red alpha
@@ -186,24 +186,26 @@ name Output1
 xpos 1517
 ypos 611
 }
-push $N23d2cc90
-push 0
-push $N29301330
-Viewer {
-inputs 3
-frame 1099
-input_process false
-name Viewer1
-xpos 1303
-ypos -180
-}
-push $N256d8b30
-push $N23d2cc90
+push $N2d8db230
+push $N2a32c480
 Switch {
 inputs 2
 which {{parent.altInput}}
 name Switch4
 xpos 1874
 ypos -65
+}
+push $N2a32c480
+push 0
+push $N2d8c5df0
+Viewer {
+inputs 3
+frame_range 1001-1099
+fps 25
+colour_sample_bbox {-0.3333333433 -0.1708333343 -0.3322916627 -0.1697916687}
+input_process false
+name Viewer1
+xpos 1303
+ypos -180
 }
 end_group
