@@ -65,6 +65,7 @@ xpos 1714
 ypos -238
 }
 Noise {
+cliptype none
 size {{"\[value FractalBlur_UserGrainSize]" i}}
 zoffset {{"\[value FractalBlur_UserGrainEvolve]" i}}
 center {1024 778}
