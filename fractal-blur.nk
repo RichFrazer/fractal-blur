@@ -1,12 +1,11 @@
-set cut_paste_input [stack 0]
-version 9.0 v6
-push $cut_paste_input
 Group {
-name Fractal_Blur8
+name Fractal_Blur
 selected true
-xpos -2287
-ypos -838
+xpos -4163
+ypos -3614
 addUserKnob {20 User}
+addUserKnob {4 output l Output M {rgba alpha}}
+addUserKnob {26 "" +STARTLINE}
 addUserKnob {7 FractalBlur_UserDilate l Spread R 0 200}
 addUserKnob {7 FractalBlur_UserGrainSize l "Grain Size" R 0 100}
 FractalBlur_UserGrainSize 20
@@ -23,7 +22,7 @@ FractalBlur_UserGrainEvolve 1
 addUserKnob {26 ""}
 addUserKnob {26 instructions l "" +STARTLINE T "Plug a texture into Input2 to use that instead of noise"}
 addUserKnob {26 ""}
-addUserKnob {26 FractalBlur_Credit l "" +STARTLINE T "Fractal Blur v1.8 by Richard Frazer - www.richardfrazer.com\nmod-v1 by Holger Hummel - www.celluloid-vfx.com"}
+addUserKnob {26 FractalBlur_Credit l "" +STARTLINE T "Fractal Blur v1.9 by Richard Frazer - www.richardfrazer.com\nmod-v1 by Holger Hummel - www.celluloid-vfx.com"}
 }
 Input {
 inputs 0
@@ -37,19 +36,25 @@ name Dot2
 xpos 1908
 ypos -118
 }
-set N2d8db230 [stack 0]
+set Nff48e30 [stack 0]
 Input {
 inputs 0
 name ALPHA
-xpos 1516
-ypos -452
+xpos 1249
+ypos -506
 }
+Dot {
+name Dot4
+xpos 1283
+ypos -413
+}
+set Nff5fab0 [stack 0]
 Dot {
 name Dot3
 xpos 1550
 ypos -370
 }
-set N2a3281b0 [stack 0]
+set Nff51970 [stack 0]
 Dot {
 name Dot1
 xpos 1748
@@ -62,7 +67,7 @@ blue black
 alpha black
 name Shuffle10
 xpos 1714
-ypos -238
+ypos -236
 }
 Noise {
 cliptype none
@@ -73,7 +78,7 @@ name Noise1
 xpos 1714
 ypos -166
 }
-set N2a32c480 [stack 0]
+set Nfe91310 [stack 0]
 Switch {
 inputs 2
 which {{"\[exists parent.input1]"}}
@@ -86,12 +91,20 @@ name Invert4
 xpos 1714
 ypos -67
 }
-push $N2a3281b0
+push $Nff51970
+Shuffle {
+red alpha
+green alpha
+blue alpha
+name Shuffle1
+xpos 1516
+ypos -333
+}
 Blur {
 size {{"\[value FractalBlur_UserDilate]" i x101 0}}
 name Blur1
 xpos 1516
-ypos -313
+ypos -283
 }
 FilterErode {
 channels rgba
@@ -106,7 +119,7 @@ name Dot10
 xpos 1550
 ypos -133
 }
-set N2a3056d0 [stack 0]
+set Nfdbf670 [stack 0]
 Merge2 {
 inputs 2
 operation minus
@@ -119,7 +132,7 @@ name Invert3
 xpos 1660
 ypos 37
 }
-push $N2a3056d0
+push $Nfdbf670
 Merge2 {
 inputs 2
 operation multiply
@@ -127,7 +140,7 @@ name Merge13
 xpos 1516
 ypos 69
 }
-set N2d8c5df0 [stack 0]
+set Nfc35e70 [stack 0]
 Clamp {
 name Clamp1
 xpos 1408
@@ -141,7 +154,7 @@ name Grade1
 xpos 1408
 ypos 195
 }
-push $N2d8c5df0
+push $Nfc35e70
 Switch {
 inputs 2
 which {{FractalBlur_UserBlackWhite i x47 1}}
@@ -156,57 +169,62 @@ whitepoint {{1-FractalBlur_UserContrast}}
 gamma {{FractalBlur_UserGamma x101 0.985}}
 black_clamp false
 name Grade5
-selected true
 xpos 1516
 ypos 329
 }
-set N308eade0 [stack 0]
+set Nfc65da0 [stack 0]
 Clamp {
 name Clamp2
 xpos 1426
 ypos 394
 }
-push $N308eade0
+push $Nfc65da0
 Switch {
 inputs 2
 which {{FractalBlur_UserBW x47 0}}
 name Switch2
-xpos 1517
+xpos 1516
 ypos 466
 }
-Shuffle {
-red alpha
-green alpha
-blue alpha
-name Shuffle15
-xpos 1517
-ypos 532
+Dot {
+name Dot6
+xpos 1550
+ypos 545
+}
+set Nf3110b0 [stack 0]
+push $Nf3110b0
+push $Nff5fab0
+ShuffleCopy {
+inputs 2
+name ShuffleCopy1
+xpos 1249
+ypos 575
+}
+Dot {
+name Dot5
+xpos 1283
+ypos 636
+}
+Switch {
+inputs 2
+which {{parent.output}}
+name Switch5
+xpos 1516
+ypos 751
 }
 Output {
 name Output1
-xpos 1517
-ypos 611
+xpos 1516
+ypos 851
 }
-push $N2d8db230
-push $N2a32c480
+push $Nff48e30
+push $Nfe91310
 Switch {
 inputs 2
 which {{parent.altInput}}
 name Switch4
+selected true
 xpos 1874
 ypos -65
-}
-push $N2a32c480
-push 0
-push $N2d8c5df0
-Viewer {
-inputs 3
-frame_range 1001-1099
-fps 25
-colour_sample_bbox {-0.3333333433 -0.1708333343 -0.3322916627 -0.1697916687}
-input_process false
-name Viewer1
-xpos 1303
-ypos -180
 }
 end_group
